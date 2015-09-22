@@ -49,6 +49,7 @@ Attributes
 | ['max_id'] | '0' | default, used to ignore higher uid/gid's |
 | ['ldap_sudo'] | false | Adds ldap enabled sudoers (true/false) |
 | ['ldap_ssh'] | false | Adds ldap enabled ssh (true/false) |
+| ['ldap_user_ssh_public_key'] | nil | ldap attribute containing ssh public key |
 
 
 Recipes

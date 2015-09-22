@@ -46,5 +46,6 @@ access_provider = <%= node['sssd_ldap']['access_provider'] %>
 ldap_access_filter = <%= node['sssd_ldap']['ldap_access_filter'] %>
 <% end %>
 
+<% if node['sssd_ldap']['ldap_user_ssh_public_key'] %>ldap_user_ssh_public_key = <%= node['sssd_ldap']['ldap_user_ssh_public_key'] %><% end %>
 min_id = <%= node['sssd_ldap']['min_id'] %>
 max_id = <%= node['sssd_ldap']['max_id'] %>

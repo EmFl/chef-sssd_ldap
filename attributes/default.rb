@@ -54,3 +54,5 @@ default['sssd_ldap']['min_id'] = '1'
 default['sssd_ldap']['max_id'] = '0'
 default['sssd_ldap']['ldap_sudo'] = false
 default['sssd_ldap']['ldap_ssh'] = false
+
+default['sssd_ldap']['ldap_user_ssh_public_key'] = nil
