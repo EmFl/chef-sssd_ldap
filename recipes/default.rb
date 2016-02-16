@@ -79,7 +79,6 @@ if platform?('ubuntu')
   end
   execute 'pam-auth-update' do
     command "pam-auth-update --package"
-    action :nothing
   end
 end
 
@@ -94,10 +93,6 @@ template '/etc/sssd/sssd.conf' do
     # this needs to run immediately so it doesn't happen after sssd
     # service block below, or sssd won't start when recipe completes
     notifies :run, 'execute[authconfig]', :immediately
-  end
-
-  if platform?('ubuntu')
-    notifies :run, 'execute[pam-auth-config]', :immediately
   end
 
   notifies :restart, 'service[sssd]'
