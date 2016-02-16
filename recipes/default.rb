@@ -68,6 +68,21 @@ if platform_family?('rhel')
   end
 end
 
+if platform?('ubuntu')
+  #Make sure home dirs get created on Ubuntu
+  cookbook_file '/usr/share/pam-configs/mkhomedir' do
+    source 'mkhomedir'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    action :create
+  end
+  execute 'pam-auth-update' do
+    command "pam-auth-update --package"
+    action :nothing
+  end
+end
+
 # sssd automatically modifies the PAM files with pam-auth-update and /etc/nsswitch.conf, so all that's left is to configure /etc/sssd/sssd.conf
 template '/etc/sssd/sssd.conf' do
   source 'sssd.conf.erb'
@@ -79,6 +94,10 @@ template '/etc/sssd/sssd.conf' do
     # this needs to run immediately so it doesn't happen after sssd
     # service block below, or sssd won't start when recipe completes
     notifies :run, 'execute[authconfig]', :immediately
+  end
+
+  if platform?('ubuntu')
+    notifies :run, 'execute[pam-auth-config]', :immediately
   end
 
   notifies :restart, 'service[sssd]'
