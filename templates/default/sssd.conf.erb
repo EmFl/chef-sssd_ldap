@@ -17,65 +17,65 @@ filter_users = root,named,avahi,haldaemon,dbus,radiusd,news,nscd
 <% if node['sssd_ldap']['domains'].kind_of?(::Hash) %>
 <%   node['sssd_ldap']['domains'].each_key {|dkey| %>
 [domain/<%=dkey%>]
-auth_provider = <%= node['sssd_ldap']['domains']['auth_provider'] ? node['sssd_ldap']['domains']['auth_provider'] : node['sssd_ldap']['auth_provider'] %>
-chpass_provider = <%= node['sssd_ldap']['domains']['chpass_provider'] ? node['sssd_ldap']['domains']['chpass_provider'] : node['sssd_ldap']['chpass_provider'] %>
-<%     if node['sssd_ldap']['domains']['ldap_sudo'] %>
-sudo_provider = <%= node['sssd_ldap']['domains']['sudo_provider'] %>
+auth_provider = <%= node['sssd_ldap']['domains'][dkey]['auth_provider'] ? node['sssd_ldap']['domains'][dkey]['auth_provider'] : node['sssd_ldap']['auth_provider'] %>
+chpass_provider = <%= node['sssd_ldap']['domains'][dkey]['chpass_provider'] ? node['sssd_ldap']['domains'][dkey]['chpass_provider'] : node['sssd_ldap']['chpass_provider'] %>
+<%     if node['sssd_ldap']['domains'][dkey]['ldap_sudo'] %>
+sudo_provider = <%= node['sssd_ldap']['domains'][dkey]['sudo_provider'] %>
 <%     elsif node['sssd_ldap']['ldap_sudo'] %>
 sudo_provider = <%= node['sssd_ldap']['sudo_provider'] %>
 <%     end %>
-id_provider = <%= node['sssd_ldap']['domains']['id_provider'] ? node['sssd_ldap']['domains']['id_provider'] : node['sssd_ldap']['id_provider'] %>
-cache_credentials = <%= node['sssd_ldap']['domains']['cache_credentials'] ? node['sssd_ldap']['domains']['cache_credentials'] : node['sssd_ldap']['cache_credentials'] %>
-enumerate = <%= node['sssd_ldap']['domains']['enumerate'] ? node['sssd_ldap']['domains']['enumerate'] : node['sssd_ldap']['enumerate'] %>
+id_provider = <%= node['sssd_ldap']['domains'][dkey]['id_provider'] ? node['sssd_ldap']['domains'][dkey]['id_provider'] : node['sssd_ldap']['id_provider'] %>
+cache_credentials = <%= node['sssd_ldap']['domains'][dkey]['cache_credentials'] ? node['sssd_ldap']['domains'][dkey]['cache_credentials'] : node['sssd_ldap']['cache_credentials'] %>
+enumerate = <%= node['sssd_ldap']['domains'][dkey]['enumerate'] ? node['sssd_ldap']['domains'][dkey]['enumerate'] : node['sssd_ldap']['enumerate'] %>
 
-ldap_schema = <%= node['sssd_ldap']['domains']['ldap_schema'] ? node['sssd_ldap']['domains']['ldap_schema'] : node['sssd_ldap']['ldap_schema'] %>
-ldap_uri = <%= node['sssd_ldap']['domains']['ldap_uri'] ? node['sssd_ldap']['domains']['ldap_uri'] : node['sssd_ldap']['ldap_uri'] %>
+ldap_schema = <%= node['sssd_ldap']['domains'][dkey]['ldap_schema'] ? node['sssd_ldap']['domains'][dkey]['ldap_schema'] : node['sssd_ldap']['ldap_schema'] %>
+ldap_uri = <%= node['sssd_ldap']['domains'][dkey]['ldap_uri'] ? node['sssd_ldap']['domains'][dkey]['ldap_uri'] : node['sssd_ldap']['ldap_uri'] %>
 
-ldap_tls_reqcert = <%= node['sssd_ldap']['domains']['ldap_tls_reqcert'] ? node['sssd_ldap']['domains']['ldap_tls_reqcert'] : node['sssd_ldap']['ldap_tls_reqcert'] %>
-ldap_tls_cacert = <%= node['sssd_ldap']['domains']['ldap_tls_cacert'] ? node['sssd_ldap']['domains']['ldap_tls_cacert'] : node['sssd_ldap']['ldap_tls_cacert'] %>
-ldap_id_use_start_tls = <%= node['sssd_ldap']['domains']['ldap_id_use_start_tls'] ? node['sssd_ldap']['domains']['ldap_id_use_start_tls'] : node['sssd_ldap']['ldap_id_use_start_tls'] %>
+ldap_tls_reqcert = <%= node['sssd_ldap']['domains'][dkey]['ldap_tls_reqcert'] ? node['sssd_ldap']['domains'][dkey]['ldap_tls_reqcert'] : node['sssd_ldap']['ldap_tls_reqcert'] %>
+ldap_tls_cacert = <%= node['sssd_ldap']['domains'][dkey]['ldap_tls_cacert'] ? node['sssd_ldap']['domains'][dkey]['ldap_tls_cacert'] : node['sssd_ldap']['ldap_tls_cacert'] %>
+ldap_id_use_start_tls = <%= node['sssd_ldap']['domains'][dkey]['ldap_id_use_start_tls'] ? node['sssd_ldap']['domains'][dkey]['ldap_id_use_start_tls'] : node['sssd_ldap']['ldap_id_use_start_tls'] %>
 
-ldap_search_base = <%= node['sssd_ldap']['domains']['ldap_search_base'] ? node['sssd_ldap']['domains']['ldap_search_base'] : node['sssd_ldap']['ldap_search_base'] %>
-ldap_user_search_base = <%= node['sssd_ldap']['domains']['ldap_user_search_base'] ? node['sssd_ldap']['domains']['ldap_user_search_base'] : node['sssd_ldap']['ldap_user_search_base'] %>
-ldap_user_object_class = <%= node['sssd_ldap']['domains']['ldap_user_object_class'] ? node['sssd_ldap']['domains']['ldap_user_object_class'] : node['sssd_ldap']['ldap_user_object_class'] %>
-ldap_user_name = <%= node['sssd_ldap']['domains']['ldap_user_name'] ? node['sssd_ldap']['domains']['ldap_user_name'] : node['sssd_ldap']['ldap_user_name'] %>
-<%     if node['sssd_ldap']['domains']['override_homedir'] %>
-override_homedir = <%= node['sssd_ldap']['domains']['override_homedir'] %>
+ldap_search_base = <%= node['sssd_ldap']['domains'][dkey]['ldap_search_base'] ? node['sssd_ldap']['domains'][dkey]['ldap_search_base'] : node['sssd_ldap']['ldap_search_base'] %>
+ldap_user_search_base = <%= node['sssd_ldap']['domains'][dkey]['ldap_user_search_base'] ? node['sssd_ldap']['domains'][dkey]['ldap_user_search_base'] : node['sssd_ldap']['ldap_user_search_base'] %>
+ldap_user_object_class = <%= node['sssd_ldap']['domains'][dkey]['ldap_user_object_class'] ? node['sssd_ldap']['domains'][dkey]['ldap_user_object_class'] : node['sssd_ldap']['ldap_user_object_class'] %>
+ldap_user_name = <%= node['sssd_ldap']['domains'][dkey]['ldap_user_name'] ? node['sssd_ldap']['domains'][dkey]['ldap_user_name'] : node['sssd_ldap']['ldap_user_name'] %>
+<%     if node['sssd_ldap']['domains'][dkey]['override_homedir'] %>
+override_homedir = <%= node['sssd_ldap']['domains'][dkey]['override_homedir'] %>
 <%     elsif node['sssd_ldap']['override_homedir'] %>
 override_homedir = <%= node['sssd_ldap']['override_homedir'] %>
 <%     end %>
-shell_fallback = <%= node['sssd_ldap']['domains']['shell_fallback'] ? node['sssd_ldap']['domains']['shell_fallback'] : node['sssd_ldap']['shell_fallback'] %>
+shell_fallback = <%= node['sssd_ldap']['domains'][dkey]['shell_fallback'] ? node['sssd_ldap']['domains'][dkey]['shell_fallback'] : node['sssd_ldap']['shell_fallback'] %>
 
-ldap_group_search_base = <%= node['sssd_ldap']['domains']['ldap_group_search_base'] ? node['sssd_ldap']['domains']['ldap_group_search_base'] : node['sssd_ldap']['ldap_group_search_base'] %>
-ldap_group_object_class = <%= node['sssd_ldap']['domains']['ldap_group_object_class'] ? node['sssd_ldap']['domains']['ldap_group_object_class'] : node['sssd_ldap']['ldap_group_object_class'] %>
-ldap_group_name = <%= node['sssd_ldap']['domains']['ldap_group_name'] ? node['sssd_ldap']['domains']['ldap_group_name'] : node['sssd_ldap']['ldap_group_name'] %>
+ldap_group_search_base = <%= node['sssd_ldap']['domains'][dkey]['ldap_group_search_base'] ? node['sssd_ldap']['domains'][dkey]['ldap_group_search_base'] : node['sssd_ldap']['ldap_group_search_base'] %>
+ldap_group_object_class = <%= node['sssd_ldap']['domains'][dkey]['ldap_group_object_class'] ? node['sssd_ldap']['domains'][dkey]['ldap_group_object_class'] : node['sssd_ldap']['ldap_group_object_class'] %>
+ldap_group_name = <%= node['sssd_ldap']['domains'][dkey]['ldap_group_name'] ? node['sssd_ldap']['domains'][dkey]['ldap_group_name'] : node['sssd_ldap']['ldap_group_name'] %>
 
-<%     if node['sssd_ldap']['domains']['ldap_default_bind_dn'] %>
-ldap_default_bind_dn = <%= node['sssd_ldap']['domains']['ldap_default_bind_dn'] %>
+<%     if node['sssd_ldap']['domains'][dkey]['ldap_default_bind_dn'] %>
+ldap_default_bind_dn = <%= node['sssd_ldap']['domains'][dkey]['ldap_default_bind_dn'] %>
 <%     elsif node['sssd_ldap']['ldap_default_bind_dn'] %>
 ldap_default_bind_dn = <%= node['sssd_ldap']['ldap_default_bind_dn'] %>
 <%     end %>
-<%     if node['sssd_ldap']['domains']['ldap_default_authtok'] %>
-ldap_default_authtok = <%= node['sssd_ldap']['domains']['ldap_default_authtok'] %>
+<%     if node['sssd_ldap']['domains'][dkey]['ldap_default_authtok'] %>
+ldap_default_authtok = <%= node['sssd_ldap']['domains'][dkey]['ldap_default_authtok'] %>
 <%     elsif node['sssd_ldap']['ldap_default_authtok'] %>
 ldap_default_authtok = <%= node['sssd_ldap']['ldap_default_authtok'] %>
 <%     end %>
 
-<%     if node['sssd_ldap']['domains']['ldap_access_filter'] %>
-access_provider = <%= node['sssd_ldap']['domains']['access_provider'] %>
-ldap_access_filter = <%= node['sssd_ldap']['domains']['ldap_access_filter'] %>
+<%     if node['sssd_ldap']['domains'][dkey]['ldap_access_filter'] %>
+access_provider = <%= node['sssd_ldap']['domains'][dkey]['access_provider'] %>
+ldap_access_filter = <%= node['sssd_ldap']['domains'][dkey]['ldap_access_filter'] %>
 <%     elsif node['sssd_ldap']['ldap_access_filter'] %>
 access_provider = <%= node['sssd_ldap']['access_provider'] %>
 ldap_access_filter = <%= node['sssd_ldap']['ldap_access_filter'] %>
 <%     end %>
 
-<%     if node['sssd_ldap']['domains']['ldap_user_ssh_public_key'] %>
-ldap_user_ssh_public_key = <%= node['sssd_ldap']['domains']['ldap_user_ssh_public_key'] %>
+<%     if node['sssd_ldap']['domains'][dkey]['ldap_user_ssh_public_key'] %>
+ldap_user_ssh_public_key = <%= node['sssd_ldap']['domains'][dkey]['ldap_user_ssh_public_key'] %>
 <%     elsif node['sssd_ldap']['ldap_user_ssh_public_key'] %>
 ldap_user_ssh_public_key = <%= node['sssd_ldap']['ldap_user_ssh_public_key'] %>
 <%     end %>
-min_id = <%= node['sssd_ldap']['domains']['min_id'] ? node['sssd_ldap']['domains']['min_id'] : node['sssd_ldap']['min_id'] %>
-max_id = <%= node['sssd_ldap']['domains']['max_id'] ? node['sssd_ldap']['domains']['max_id'] : node['sssd_ldap']['max_id'] %>
+min_id = <%= node['sssd_ldap']['domains'][dkey]['min_id'] ? node['sssd_ldap']['domains'][dkey]['min_id'] : node['sssd_ldap']['min_id'] %>
+max_id = <%= node['sssd_ldap']['domains'][dkey]['max_id'] ? node['sssd_ldap']['domains'][dkey]['max_id'] : node['sssd_ldap']['max_id'] %>
 
   <% } %>
 <% else %>
