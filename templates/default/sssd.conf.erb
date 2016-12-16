@@ -1,7 +1,11 @@
 [sssd]
 config_file_version = 2
 services = nss, pam<% if node['sssd_ldap']['ldap_sudo'] %>, sudo<% end %><% if node['sssd_ldap']['ldap_ssh'] %>, ssh<% end %>
+<% if node['sssd_ldap']['domains'].kind_of?(::Hash) %>
+domains = <%=node['ssd_ldap']['domains'].keys.join(",")%>
+<% else %>
 domains = LDAP
+<% end %>
 
 [nss]
 filter_users = root,named,avahi,haldaemon,dbus,radiusd,news,nscd
