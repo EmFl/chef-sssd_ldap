@@ -56,5 +56,3 @@ default['sssd_ldap']['ldap_sudo'] = false
 default['sssd_ldap']['ldap_ssh'] = false
 
 default['sssd_ldap']['ldap_user_ssh_public_key'] = nil
-
-default['sssd_ldap']['domains'] = nil
