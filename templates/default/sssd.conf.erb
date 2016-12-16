@@ -60,6 +60,11 @@ ldap_default_authtok = <%= node['sssd_ldap']['domains'][dkey]['ldap_default_auth
 <%     elsif node['sssd_ldap']['ldap_default_authtok'] %>
 ldap_default_authtok = <%= node['sssd_ldap']['ldap_default_authtok'] %>
 <%     end %>
+<%     if node['sssd_ldap']['domains'][dkey]['ldap_default_authtok_type'] %>
+ldap_default_authtok_type = <%= node['sssd_ldap']['domains'][dkey]['ldap_default_authtok_type'] %>
+<%     elsif node['sssd_ldap']['ldap_default_authtok_type'] %>
+ldap_default_authtok_type = <%= node['sssd_ldap']['ldap_default_authtok_type'] %>
+<%     end %>
 
 <%     if node['sssd_ldap']['domains'][dkey]['ldap_access_filter'] %>
 access_provider = <%= node['sssd_ldap']['domains'][dkey]['access_provider'] %>
@@ -109,6 +114,7 @@ ldap_group_name = <%= node['sssd_ldap']['ldap_group_name'] %>
 
 <% if node['sssd_ldap']['ldap_default_bind_dn'] %>ldap_default_bind_dn = <%= node['sssd_ldap']['ldap_default_bind_dn'] %><% end %>
 <% if node['sssd_ldap']['ldap_default_authtok'] %>ldap_default_authtok = <%= node['sssd_ldap']['ldap_default_authtok'] %><% end %>
+<% if node['sssd_ldap']['ldap_default_authtok_type'] %>ldap_default_authtok_type = <%= node['sssd_ldap']['ldap_default_authtok_type'] %><% end %>
 
 <% if node['sssd_ldap']['ldap_access_filter'] %>
 access_provider = <%= node['sssd_ldap']['access_provider'] %>
